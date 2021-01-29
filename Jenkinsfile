@@ -37,6 +37,23 @@ node {
       throw err
    }
    
+   
+      stage('Code Quality Check via SonarQube') {
+   steps {
+       script {
+       def scannerHome = tool 'sonarqube';
+           withSonarQubeEnv("sonarqube-container") {
+           sh "${tool("sonarqube")}/bin/sonar-scanner \
+           -Dsonar.projectKey=test-node-js \
+           -Dsonar.sources=. \
+           -Dsonar.css.node=. \
+           -Dsonar.host.url=http://192.168.122.1:9000 \
+           -Dsonar.login=b196dba9237ba512c4c053129fb88765ff4ee582"
+               }
+           }
+       }
+   }
+   
    // ------------------------------------
    // -- ETAPA: Instalar
    // ------------------------------------

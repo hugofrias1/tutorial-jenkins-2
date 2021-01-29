@@ -38,21 +38,19 @@ node {
    }
    
    
-      stage('Code Quality Check via SonarQube') {
-   steps {
-       script {
-       def scannerHome = tool 'sonarqube';
-           withSonarQubeEnv("sonarqube-container") {
-           sh "${tool("sonarqube")}/bin/sonar-scanner \
-           -Dsonar.projectKey=test-node-js \
-           -Dsonar.sources=. \
-           -Dsonar.css.node=. \
-           -Dsonar.host.url=http://192.168.122.1:9000 \
-           -Dsonar.login=b196dba9237ba512c4c053129fb88765ff4ee582"
-               }
-           }
-       }
-   }
+stage('Sonarqube') {
+    environment {
+        scannerHome = tool 'SonarQubeScanner'
+    }
+    steps {
+        withSonarQubeEnv('sonarqube') {
+            sh "${scannerHome}/bin/sonar-scanner"
+        }
+        timeout(time: 10, unit: 'MINUTES') {
+            waitForQualityGate abortPipeline: true
+        }
+    }
+}
    
    // ------------------------------------
    // -- ETAPA: Instalar

@@ -38,15 +38,7 @@ node {
    }
    
    
- def sonarServer() {
-    stage('SonarQube Server') {
 
-        withSonarQubeEnv('sonarqube') {
-           echo '>>>>>>>>>>>>>>>>>>><<<<dentro de withSonarQubeEnv'
-        }
-
-    }
-}
    
    
    // ------------------------------------

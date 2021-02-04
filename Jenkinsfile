@@ -38,9 +38,17 @@ node {
    }
    
    
-   stage'Sonarqube'
-   echo 'Ejecutando Sonarqube'
-    
+      stage('SonarQube analysis') {
+      tools {
+        sonarQube 'SonarQubeScanner'
+      }
+      steps {
+        withSonarQubeEnv('SonarQubeScanner') {
+          sh 'sonar-scanner'
+        }
+      }
+    }
+   
    
    // ------------------------------------
    // -- ETAPA: Instalar

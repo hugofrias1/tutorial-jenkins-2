@@ -41,7 +41,7 @@ node {
 
     stage('SonarQubeServer') {
         echo 'Dentro SonarQubeServer'
-        withSonarQubeEnv('SonarQube Octodemoapps') {
+        withSonarQubeEnv('SonarQube SonarQube') {
             mvn "org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar"
         }
         

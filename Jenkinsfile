@@ -39,10 +39,11 @@ node {
    
    
 
-   def sonarServer() {
-    stage('SonarQube Server') {
-
-      echo 'dentro de SonarServers'
+    stage('SonarQubeServer') {
+        echo 'Dentro SonarQubeServer'
+        withSonarQubeEnv('SonarQube Octodemoapps') {
+            mvn "org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar"
+        }
         
     }
 }

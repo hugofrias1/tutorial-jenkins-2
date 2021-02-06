@@ -39,7 +39,13 @@ node {
    
    
 
-   
+   def sonarServer() {
+    stage('SonarQube Server') {
+
+      echo 'dentro de SonarServers'
+        
+    }
+}
    
    // ------------------------------------
    // -- ETAPA: Instalar

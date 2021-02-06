@@ -39,7 +39,7 @@ node {
    
        
       stage('SonarQube analysis') {
-    withSonarQubeEnv( credentialsId: 'cad5ea9ea470d7d2bc9472cfdefb6e4b1cf9db2f', installationName: 'SonarQube') { 
+    withSonarQubeEnv(installationName: 'SonarQube') { 
       sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
     }
   }
